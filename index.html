@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Cult of the Iron Body</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto+Slab&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Roboto Slab', serif;
+      background-color: #1a1a1a;
+      background-image: radial-gradient(circle at center, #2a2a2a 0%, #1a1a1a 100%);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .splash-box {
+  background: linear-gradient(to bottom, #f2e4c2 0%, #d2a679 100%);
+  padding: 60px;
+  text-align: center;
+  max-width: 700px;
+  width: 90%;
+  border: 2px solid #DAA520;
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.2), /* inner fade */
+    0 0 10px rgba(0, 0, 0, 0.3);       /* outer glow */
+}
+
+    .splash-box h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3em;
+      color: #464646;
+      margin-bottom: 30px;
+    }
+
+    .quote-box {
+      font-style: italic;
+      font-size: 1.2em;
+      color: #5a2e0e;
+      margin: 20px 0;
+      min-height: 60px;
+      transition: opacity 0.5s ease;
+    }
+
+    .menu-buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .menu-buttons a {
+      text-decoration: none;
+      background-color: #7A2E2E; /* toned-down crimson */
+      color: #fff;
+      padding: 15px 30px;
+      font-weight: bold;
+      border: 2px solid #DAA520;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .menu-buttons a:hover {
+      background-color: #DAA520;
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="splash-box">
+      <h1>The Cult of the Iron Body</h1>
+      <div class="quote-box">
+        <div id="quoteText">“To flex is to pray. To sweat is to sanctify.”</div>
+        <div id="quoteSource">— The First Book of Eman, 3:14</div>
+      </div>
+      <div class="menu-buttons">
+        <a href="flipbooks.html">📖 Read the Holy Tomes</a>
+        <a href="mechanics.html">💎 Assess the Ledgers</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const quotes = [
+  { text: "To flex is to pray. To sweat is to sanctify.", source: "The First Book of Eman, 3:14" },
+  { text: "Brother, if thy reps be fewer than ten, thou hast sinned.", source: "The First Book of Eman, 1:9" },
+  { text: "Emal Hol did not rest on the seventh day. He did squats.", source: "The First Book of Eman, 9:1" },
+  { text: "Let not thy force exceed its budget, lest the Emperor smite thee.", source: "The First Book of Eman, 7:22" },
+  { text: "The bench is sacred. The barbell, divine.", source: "The First Book of Eman, 2:7" },
+  { text: "Measure thy gains, lest chaos creep into thy macros.", source: "The First Book of Eman, 5:11" }
+];
+
+
+    let index = 0;
+const quoteText = document.getElementById('quoteText');
+const quoteSource = document.getElementById('quoteSource');
+
+setInterval(() => {
+  index = (index + 1) % quotes.length;
+  quoteText.style.opacity = 0;
+  quoteSource.style.opacity = 0;
+  setTimeout(() => {
+    quoteText.textContent = `“${quotes[index].text}”`;
+    quoteSource.textContent = `— ${quotes[index].source}`;
+    quoteText.style.opacity = 1;
+    quoteSource.style.opacity = 1;
+  }, 500);
+}, 5000);
+
+  </script>
+
+</body>
+</html>
