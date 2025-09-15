@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The First Book of Eman</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../turn.js"></script>
+  <style>
+    html, body {
+	  overflow: hidden;
+      margin: 0;
+      padding: 0;
+      background: #1a1a1a;
+      font-family: 'Cinzel', serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+	#book {
+	  width: 800px;
+	  height: 571px;
+	  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+	}
+
+	.page {
+	  width: 400px;
+	  height: 571px;
+	  box-sizing: border-box;
+	  background: linear-gradient(to bottom, #f2e4c2, #d2a679);
+	  border: 2px solid #DAA520;
+	  font-size: 1.4em;
+	  line-height: 1.8;
+	  color: #3b1f0f;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+
+    .page h2, .page h3 {
+      color: #AA0000;
+      margin-bottom: 20px;
+    }
+
+    .verse {
+      font-style: italic;
+      margin-top: 20px;
+      color: #5a2e0e;
+    }
+
+    @media (max-width: 900px) {
+      #book {
+        transform: scale(0.8);
+        transform-origin: top center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #book {
+        transform: scale(0.6);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="book"></div>
+
+  <script>
+    function addPage(page, book) {
+      if (!book.turn('hasPage', page)) {
+        const element = $('<div />', {
+          class: 'page',
+          id: 'page-' + page
+        });
+
+        let content = '';
+        switch (page) {
+          case 1:
+			content = '<img src="images/cover.jpg" alt="Sacred Cover" style="width:100%; height:auto;">';
+			break;
+          case 2:
+            content = '<h3>Verse 1:9</h3><p>“Brother, if thy reps be fewer than ten, thou hast sinned.”</p><p class="verse">— Emal Hol, flexing upon a heretic</p>';
+            break;
+          case 3:
+            content = '<h3>Verse 3:14</h3><p>“To flex is to pray. To sweat is to sanctify.”</p><p class="verse">— Emal Hol, mid deadlift</p>';
+            break;
+          case 4:
+            content = '<h3>Verse 7:22</h3><p>“Let not thy force exceed its budget, lest the Emperor smite thee with imbalance.”</p><p class="verse">— Emal Hol, during the Sermon of Macros</p>';
+            break;
+          default:
+            content = '<p>This page is blank. Meditate on your macros.</p>';
+        }
+
+        element.html(content);
+        book.turn('addPage', element, page);
+      }
+    }
+
+    $(function() {
+      $('#book').turn({
+        width: 800,
+		height: 571,
+		autoCenter: true,
+		elevation: 50,
+		pages: 4,
+        when: {
+          turning: function(e, page, view) {
+            const range = $(this).turn('range', page);
+            for (let p = range[0]; p <= range[1]; p++) {
+              addPage(p, $(this));
+            }
+          }
+        }
+      });
+
+      addPage(1, $('#book'));
+      addPage(2, $('#book'));
+    });
+  </script>
+
+</body>
+</html>
